@@ -8,8 +8,8 @@ export interface IStocksClient {
     ticker: string,
     multiplier: number,
     timespan: string,
-    from: string,
-    to: string,
+    from: string | number,
+    to: string | number,
     query?: IAggsQuery
   ) => Promise<IAggs>;
 }

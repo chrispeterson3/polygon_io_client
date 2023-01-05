@@ -20,7 +20,7 @@ export const get = async (
   query?: IPolygonQuery
 ): Promise<any> => {
   if (!apiKey) {
-    throw new Error("API KEY not configured...");
+    throw Error("API KEY not configured...");
   }
 
   const authenticatedQuery: IPolygonQueryWithCredentials = {
@@ -31,12 +31,11 @@ export const get = async (
   const qs = queryString.stringify(authenticatedQuery, { encode: true });
 
   const url = `${apiBase}${path}?${qs}`;
-
   const response = await fetch(url);
 
   if (response.status >= 400) {
     const message = await response.text();
-    throw new Error(message);
+    throw Error(message);
   }
 
   return response.json();
